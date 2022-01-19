@@ -63,7 +63,7 @@ class HomePage {
             elecAndGasIcon: '(//a[@href="/energy/"]//div)[1]',
             startBtn: '//button[text()="Start"]',
             iSelectIconInYourUsagePage: '//a[@href="http://www.iselect.com.au"]//img',
-            yourUsagePageTitleXpath: '//itle[text()="iSelect - Electricity Comparison | Gas Rates | Compare Energy Rates"]',
+            yourUsagePageTitleXpath: '//title[text()="iSelect - Electricity Comparison | Gas Rates | Compare Energy Rates"]',
             youMightBeInterestedHeader: '//h2[text()="You might be interested in..."]',
             solarBasicLink: '//h3[text()="The solar energy basics "]/..',
             solarBasicImg: '//h3[text()="The solar energy basics "]/../../../div[1]',
