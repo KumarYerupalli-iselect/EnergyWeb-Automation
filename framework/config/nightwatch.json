@@ -1,0 +1,54 @@
+{
+  "src_folders": [
+    "./test/functional/test/build/tests"
+  ],
+  "page_objects_path": "./test/functional/build/test/energyWatch/pages",
+  "globals_path": "./test/functional/data/global.js",
+  "data_path":"./test/functional/data",
+  "selenium": {
+    "start_process": true,
+    "server_path": "./test/functional/bin/selenium-server-standalone-3.141.59.jar",
+    "log_path": "",
+    "host": "127.0.0.1",
+    "port": 4444,
+    "cli_args": {
+      "webdriver.chrome.driver": "./test/functional/bin/chromedriver.exe"
+    }
+  },
+  "test_settings": {
+    "default": {
+      "skip_testcases_on_fail": false,
+      "launch_url": "https://wwwuat.iselect.com.au/energy/",
+      "selenium_port": 4444,
+      "selenium_host": "localhost",
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "chromeOptions": {
+          "w3c": false,
+          "args": [
+            "${BROWSER_RENDER}",
+            "--disable-infobars"
+          ]
+        }
+      }
+    },
+    "dev_env": {
+      "launch_url": "https://.....dev...URL"
+       
+     },
+
+     "test_env": {
+      "launch_url": "https://.......test...URL"
+      
+     },
+
+     "uat_env": {
+      "launch_url": "https://.......test...URL"
+      
+     }
+    
+  }
+}
+

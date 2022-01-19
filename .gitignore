@@ -1,0 +1,7 @@
+#Ignores the Respective Files while Pushing it to git
+node_modules
+
+chromedriver.log
+allure-report
+allure-results
+tests_output

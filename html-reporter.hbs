@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>iSelect Energy-Web Automation Test Results - {{browser}}</title>
+
+  <style>
+    html, body {
+      font-family: Arial,sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body { padding: 10px 40px; }
+
+    table { width: 100%; margin-bottom: 20px; }
+
+      td {
+        padding: 7px;
+        border-top: none;
+        border-left: 1px black solid;
+        border-bottom: 1px black solid;
+        border-right: none;
+      }
+
+      td.pass { color: #003b07; background: #86e191; }
+      td.skip { color: #7d3a00; background: #ffd24a; }
+      td.fail { color: #5e0e00; background: #ff9c8a; }
+      td.total { color: #122e52; background: #b0c4de; }
+      
+
+    tr:last-child       { border-top: 1px black solid; }
+      tr:last-child td    { border-top: 1px black solid; }
+      tr:first-child td   { border-top: 1px black solid; }
+        td:last-child       { border-right: 1px black solid; }
+
+    tr.overview td      { padding-bottom: 0px; border-bottom: none; }
+    tr.overview.last td { padding-bottom: 3px; }
+
+    ul.assertions   { list-style-type: none; }
+      span.error      { color: #AD2B2B; }
+      span.success    { color: #53891E; }
+
+    .stacktrace { display: inline; }
+      .stacktrace code { display: none; }
+
+    #nightwatch-logo {
+      position: absolute;
+      top: 20px;
+      right: 33px;
+      width: 70px;
+      height: 75px;
+      background: transparent url('https://www.iselect.com.au/content/themes/iselect/assets/images/menu-nav/logo-new.svg') no-repeat;
+      background-size: 70px 75px;
+    }
+
+    canvas{
+      margin: 5px 0% 5px 13%;
+    }
+
+    #bar-chart{
+        width:350px !important;
+        height:250px !important;
+    }
+
+    #pie-chart{
+        width:420px !important;
+        height:220px !important;
+        padding-bottom: 15px;
+    }
+
+    #charts{
+      text-align:center;
+    }
+
+    table{
+      border-collapse: collapse;
+    }
+
+    thead tr{
+      background-color: #ff7f00;
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: bolder;
+    }
+
+    .passed-tc{
+      color:green;
+      font-weight: 600;
+    }
+
+  .failed-tc{
+    color: red;
+    font-weight: 600;
+  }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+</head>
+
+<body>
+  <h1>iSelect Energy-Web Automation Test Results</h1>
+  
+
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr class="overview">
+      <td colspan="3" title="{{browser}}"><strong>Browser:</strong> {{browser}}</td>
+    </tr>
+    <tr class="overview">
+      <td colspan="3"><strong>Timestamp:</strong> {{timestamp}}</td>
+    </tr>
+    <tr class="overview last">
+      <td colspan="3"><strong>Tests:</strong> {{totalTests}}<br></td>
+    </tr>
+    <tr>
+      <td class="total"><strong>{{total}}</strong> Total</td>
+      <td class="pass"><strong>{{results.passed}}</strong> passed</td>
+      <td class="fail"><strong>{{results.failed}}</strong> failures</td>
+    </tr>
+  </table>
+
+<div id="dataPoints" style="display: none;">
+        <p>{{results.passed}}</p>
+        <p>{{results.failed}}</p>
+    </div>
+
+     <canvas id="bar-chart" style="display: inline-block;"></canvas>
+     <canvas id="pie-chart" style="display: inline-block;"></canvas>
+
+   
+    <script>
+        let values=document.getElementById("dataPoints").children;
+        let passed=Number(values[0].textContent);
+        let failed=Number(values[1].textContent);
+      
+new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Passed","Failed"],
+      datasets: [
+        {
+          label: "Automation Test Results",
+          backgroundColor: ["#1b8214", "#cf180e"],
+          data:[passed,failed]
+        }
+      ]
+    },
+    options: {
+        responsive:false,
+        maintainAspectRatio:false,
+        plugins:{
+          datalabels:{
+            formatter:(value, ctx) => {                        
+                        return "";
+                        },
+            color: '#fff',
+          }
+        },
+      legend: { display: false },
+      title: {
+        display: false,
+        text: 'Automation Test Results',
+        fontSize:10
+      },
+      tooltips:{
+        titleFontSize:10,
+        bodyFontSize:10
+      }
+      ,
+
+      scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontSize:10
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize:12
+                },
+                barPercentage:0.5,
+                categoryPercentage:1
+            }]
+        }
+
+    }
+
+
+});
+
+
+
+new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Passed","Failed"],
+      datasets: [
+        {
+          label: "Automation Test Results",
+          backgroundColor: ["#1b8214", "#cf180e"],
+          data:[passed,failed]
+        }
+      ]
+    },
+    options: {
+        responsive:false,
+        maintainAspectRatio:false,
+        plugins:{
+          datalabels:{
+            formatter:(value, ctx) => {                        
+                          let sum = 0;
+                          let dataArr = ctx.chart.data.datasets[0].data;
+                          dataArr.map(data => {
+                              sum += data;
+                          });
+                          let percentage = (value*100 / sum).toFixed(1)+"%";
+                          return percentage;
+                        },
+            color: '#fff',
+          }
+        },
+      legend: { 
+        display: true,
+        position:"right",
+        labels:{
+          fontSize:16,
+          boxWidth:15
+        }
+        },
+      title: {
+        display: false,
+        text: 'Automation Test Results',
+        fontSize:20
+      },
+      tooltips:{
+        titleFontSize:10,
+        bodyFontSize:10
+      }
+
+    }
+
+
+});
+
+
+    </script>
+
+
+<table>
+  <thead>
+    <tr>
+      <td>Test Suite</td>
+      <td>Test Case</td>
+      <td>Passed</td>
+      <td>Failed</td>
+      <td>Time</td>
+    </tr>
+  </thead>
+  <tbody>
+{{#each testcases}}
+<tr>
+  <td>{{this.testScenario}}</td>
+  <td>{{this.testCase}}</td>
+  <td class="passed-tc">{{this.passed}} ✓</td>
+  <td class="failed-tc">{{this.failed}} ✕</td>
+  <td>{{this.time}}</td>
+</tr>
+
+{{/each}}
+</tbody>
+</table>
+
+
+  {{#each results.modules}}
+      <h2>{{@key}}</h2>
+
+      {{#each this.completed}}
+        <h3>{{@key}}</h3>
+        <ul class="assertions">
+          {{#each this.assertions}}
+            <li>
+              {{#if failure}}
+                <span class="error">&#10006;</span>
+              {{else}}
+                <span class="success">&#10004;</span>
+              {{/if}}
+
+              {{this.message}}
+
+              {{#if this.failure}}
+                {{this.failure}}
+              {{/if}}
+
+              {{#if this.stacktrace}}
+                <div class="stacktrace">
+                    <a href="#">view stacktrace</a>
+                    <code><pre>{{this.stacktrace}}</pre></code>
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+
+        <p>
+          {{#if this.failed}}
+            <span class="error"><strong>FAILED:</strong></span>
+            <span class="error"><strong>{{this.failed}}</strong></span> assertions failed and
+            <span class="success"><strong>{{this.passed}}</span></strong> passed. ({{this.time}}s)
+          {{else}}
+            <span class="success"><strong>OK.</strong></span>
+            <span class="success"><strong>{{this.passed}}</strong></span> assertions passed. ({{this.time}}s)
+          {{/if}}
+        </p>
+      {{/each}}
+
+      {{#if this.skipped}}
+        <h4>skipped</h4>
+        <ul>
+          {{#each this.skipped}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+
+      <hr>
+  {{/each}}
+
+  <div id="nightwatch-logo"></div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+  $(function() {
+    $('div.stacktrace').on('click', 'a', function(evt) {
+      evt.preventDefault();
+
+      var $link = $(this);
+      var $code = $link.parent().find('code');
+
+      $code.is(':visible') ? $link.text('hide stacktrace'):
+                             $link.text('view stacktrace');
+
+      $code.toggle();
+    });
+  });
+  </script>
+</body>
+</html>

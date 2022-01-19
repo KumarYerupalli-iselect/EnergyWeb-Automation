@@ -1,0 +1,29 @@
+{
+    "CommonData": {
+        "__COMMENT__": "Common Data",
+        "PostCode": "500",
+        "Address": " 5000, Adelaide"
+    },
+    "TC003Data": {
+        "__COMMENT__": "THIS IS THE DATA OF '''TC003 Verify Address Bar in Energy Vertical''' ",
+        "iSelectWordPressURL": "https://www.iselect.com.au/",
+        "YourUsagePageTitle": "iSelect - Electricity Comparison | Gas Rates | Compare Energy Rates",
+        "iSelectWordPressTitle": "iSelect Australia | Compare & Save on Car, Travel, Life, Home Loans & More"
+    },
+    "TC004Data": {
+        "__COMMENT__": "THIS IS THE DATA OF '''TC004 Verify the You may be interested in... section''' ",
+        "SolarEnergyBasicsPageTitle": "Benefits of Solar Energy | Solar Power Benefits | iSelect",
+        "SwitchElecAndGasPageTitle": "Change Electricity Provider | Compare Energy | iSelect",
+        "ElecPlanPageTitle": "How to find the best energy plan for you | iSelect",
+        "GridConnectPageTitle": "Solar Power Systems | Compare Panels and Inverters | iSelect",
+        "SaveEnergyPageTitle": "Energy Saving Tips | 10 Ways to Save Energy | iSelect"
+    },
+    "TC008Data": {
+        "__COMMENT__": "THIS IS THE DATA OF '''TC008 Verify the links available below About iSelect''' ",
+        "AboutIselectLink": ["Participating Providers", "Terms & Conditions", "Privacy Policy", "Disclaimer", "Contact Us", "How iSelect Works", "Our Company", "Careers", "Media Centre", "Investor Centre", "Become Our Partner", "View Basic Plan Information", "View Victorian Energy Fact Sheets"]
+    },
+    "TC009Data": {
+        "__COMMENT__": "THIS IS THE DATA OF '''TC009 Verify the links available below 2019 Partner Awards''' ",
+        "PartnersAwardsLink": ["Energy Partner of the Year", "iSelect Best New Partner"]
+    }
+}
