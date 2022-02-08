@@ -1,10 +1,9 @@
 import * as data from '../../data/HomePageData.json';
 import { NightwatchBrowser } from "nightwatch";
-import HomePage from "../../page/HomePage";
-import Util from '../../utils/Util';
-const home = new HomePage();
-const util = new Util();
-
+/** Home Page Object */
+import {homePage} from "../../page/HomePage";
+/**Utils Object */
+import {helperUtils} from "../../utils/helperUtils";
 
 module.exports = {
 
@@ -68,9 +67,9 @@ module.exports = {
     // },
 
     'TC009 Verify the links available below 2019 Partner Awards': function (browser : NightwatchBrowser) {
-        home.moveToBottomofPage(browser)
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0])
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1])
+        homePage.moveToBottomofPage(browser)
+        homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0])
+        homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1])
     },
 
     beforeEach: function (browser: NightwatchBrowser) {
@@ -84,6 +83,6 @@ module.exports = {
     afterEach: function (browser: NightwatchBrowser) {
         browser.end()
         if (browser.currentTest.results.failed >= 1)
-            browser.saveScreenshot('./screenshots/'+util.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
+            browser.saveScreenshot('./screenshots/'+helperUtils.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
     },
 };

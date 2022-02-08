@@ -3,8 +3,7 @@
     "./test/functional/test/build/tests"
   ],
   "page_objects_path": "./test/functional/build/test/energyWatch/pages",
-  "globals_path": "./test/functional/data/global.js",
-  "data_path":"./test/functional/data",
+  "globals_path": "./globals.js",
   "selenium": {
     "start_process": true,
     "server_path": "./test/functional/bin/selenium-server-standalone-3.141.59.jar",

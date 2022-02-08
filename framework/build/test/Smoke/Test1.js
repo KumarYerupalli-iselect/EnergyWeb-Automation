@@ -18,15 +18,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const data = __importStar(require("../../data/HomePageData.json"));
-const HomePage_1 = __importDefault(require("../../page/HomePage"));
-const Util_1 = __importDefault(require("../../utils/Util"));
-const home = new HomePage_1.default();
-const util = new Util_1.default();
+/** Home Page Object */
+const HomePage_1 = require("../../page/HomePage");
+/**Utils Object */
+const helperUtils_1 = require("../../utils/helperUtils");
 module.exports = {
     // //Energy Web tests starts here
     // 'TC001 Verify the functionality of iSelect.. always get it right button': function (browser: NightwatchBrowser) {
@@ -79,9 +76,9 @@ module.exports = {
     //     home.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[12], true)
     // },
     'TC009 Verify the links available below 2019 Partner Awards': function (browser) {
-        home.moveToBottomofPage(browser);
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0]);
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1]);
+        HomePage_1.homePage.moveToBottomofPage(browser);
+        HomePage_1.homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0]);
+        HomePage_1.homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1]);
     },
     beforeEach: function (browser) {
         browser
@@ -93,6 +90,6 @@ module.exports = {
     afterEach: function (browser) {
         browser.end();
         if (browser.currentTest.results.failed >= 1)
-            browser.saveScreenshot('./screenshots/' + util.random(8) + '.png', () => console.log('screenshot catured for the failed test case'));
+            browser.saveScreenshot('./screenshots/' + helperUtils_1.helperUtils.random(8) + '.png', () => console.log('screenshot catured for the failed test case'));
     },
 };

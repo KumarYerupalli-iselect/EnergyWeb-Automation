@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compileTypeScriptFiles": "rimraf ./tests_output/ && rimraf ./screens/ && rimraf chromedriver.log && cd ./framework/test/Regression && tsc --outDir ../../build",
-    "runTestsOfRegression:uat": "npx nightwatch ./framework/build/test/Regression --reporter html-reporter.js --config=./framework/config/nightwatch.conf.js --env uat",
-    "runTestsOfRegression:prod": "npx nightwatch ./framework/build/test/Regression --reporter html-reporter.js --config=./framework/config/nightwatch.conf.js --env prod",
-
-    "runSingleTestOfRegression:uat": "npx nightwatch ./framework/build/test/Regression/YourUsagePageTest.js --reporter html-reporter.js --config=./framework/config/nightwatch.conf.js --env uat",
-
+    "compileTypeScriptFiles": "rimraf ./tests_output/ && rimraf ./screenshots/ && rimraf chromedriver.log && cd ./framework/test/Regression && tsc --outDir ../../build",
+    "runTestsOfRegression:uat": "npx nightwatch ./framework/build/test/Regression --reporter ./reporter.js --config=./config/nightwatch.conf.js",
+    "runTestsOfRegression:prod": "npx nightwatch ./framework/build/test/Regression --reporter html-reporter.js --config=./config/nightwatch.conf.js --env prod",
+    "runSingleTestOfRegression:uat": "npx nightwatch ./framework/build/test/Regression/YourUsagePageTest.js --reporter ./reporter.js --headless --config=./config/nightwatch.conf.js",
+    "runSingleTestOfRegression:prod": "npx nightwatch ./framework/build/test/Regression/HomePageTest.js --reporter ./reporter.js --config=./config/nightwatch.conf.js --env prod",
     "allureReport": "allure generate ./allure-results --clean && allure open"
   },
   "author": "Peter (Kumar Raja Yerupalli)",
@@ -17,7 +16,7 @@
   "dependencies": {
     "@types/nightwatch": "^1.3.4",
     "@types/node": "^15.14.9",
-    "nightwatch": "^1.7.11",
+    "nightwatch": "^1.7.13",
     "nightwatch-html-reporter": "^2.0.6"
   },
   "devDependencies": {
@@ -25,8 +24,8 @@
     "fs": "0.0.1-security",
     "geckodriver": "^2.0.4",
     "handlebars": "^4.7.7",
-    "nightwatch-vrt": "^0.2.10",
     "nightwatch-allure": "^1.2.0",
+    "nightwatch-vrt": "^0.2.10",
     "nyc": "^15.1.0",
     "path": "^0.12.7",
     "typescript": "^4.4.4"

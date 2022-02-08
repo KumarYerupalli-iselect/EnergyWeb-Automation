@@ -91,6 +91,22 @@ exports.helperUtils = {
                 break;
         }
     },
+    assertWebElementOrItsValue(browser, assertionType, selector, expectedText) {
+        switch (assertionType) {
+            case "isEqual":
+                browser.expect.element(selector).to.have.value.that.equals(expectedText);
+                break;
+            case "toContain":
+                browser.expect.element(selector).to.have.value.which.contains(expectedText);
+                break;
+            case "isNotEqual":
+                browser.expect.element(selector).to.have.value.not.equals(expectedText);
+                break;
+            case "match":
+                browser.expect.element(selector).to.have.value.which.match(expectedText);
+                break;
+        }
+    },
     switchToPrimaryWindow(browser) {
         browser.windowHandles((result) => {
             let handle = result.value[0];
@@ -150,5 +166,15 @@ exports.helperUtils = {
         browser.sendKeys(selector, value, () => {
             console.log("CallBack :entering input value as " + value);
         });
+    },
+    moveToElement(browser, selector, message) {
+        return browser.useXpath()
+            .waitForElementVisible(selector, 20000, true, null, message)
+            .getLocationInView(selector, (result) => {
+            browser.moveToElement(selector, result.value[0], result.value[1]);
+        });
+    },
+    random(length) {
+        return Math.random().toString(16).substr(2, length);
     }
 };

@@ -18,18 +18,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Data Object */
 const data = __importStar(require("../../data/HomePageData.json"));
 /** Home Page Object */
-const HomePage_1 = __importDefault(require("../../page/HomePage"));
-const home = new HomePage_1.default();
-/**Utils Object */
-const Util_1 = __importDefault(require("../../utils/Util"));
-const util = new Util_1.default();
+const HomePage_1 = require("../../page/HomePage");
 module.exports = {
     /**
      * Test Cases Covered : Verify that the Energy UAT site
@@ -39,82 +32,84 @@ module.exports = {
                             Verify that the "Enter Postcode or suburb” field is displayed to the user
                             Verify that Start button is available beside Postcode field
                             Verify that dropdown list is displayed while entering data in Postcode field
+                            Verify that selected value from the dropdown list is populated in the Postcode field
+                            Verify that Your Usage page displayed when clicked on Start button
      */
-    'TC001 Verify the functionality of iSelect.. always get it right button': function (browser) {
+    'TC001_Verify_the_functionality_of_iSelect_always_get_it_right_button': function (browser) {
         browser.url(data.TC003Data.iSelectWordPressURL);
-        home.validateIselectWordPressPage(browser, data.TC003Data.iSelectWordPressURL, data.TC003Data.iSelectWordPressTitle);
-        home.clickOnElecandGasIcon(browser);
-        home.enterAddress(browser, data.CommonData.PostCode);
-        home.clickOnAddressOption(browser);
-        home.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle);
-        home.clickOniSelectIconinYourUsagePage(browser);
-        home.validateIselectWordPressPage(browser, data.TC003Data.iSelectWordPressURL, data.TC003Data.iSelectWordPressTitle);
+        HomePage_1.homePage.validateIselectWordPressPage(browser, data.TC003Data.iSelectWordPressURL, data.TC003Data.iSelectWordPressTitle);
+        HomePage_1.homePage.clickOnElecandGasIcon(browser);
+        HomePage_1.homePage.enterAddress(browser, data.CommonData.PostCode);
+        HomePage_1.homePage.clickOnAddressOption(browser);
+        HomePage_1.homePage.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle);
+        HomePage_1.homePage.clickOniSelectIconinYourUsagePage(browser);
+        HomePage_1.homePage.validateIselectWordPressPage(browser, data.TC003Data.iSelectWordPressURL, data.TC003Data.iSelectWordPressTitle);
     },
     /**
      * Test Case Covered : Verify  “We compare some of Australia's biggest brands” section
      */
     'TC002 Verify We compare some of Australias biggest brands section': function (browser) {
-        home.validateOurPartnersHeaderDisplayed(browser);
-        home.validateViewOurPartnersBtnDisplayed(browser);
-        home.clickOnViewOurPartnersBtn(browser);
-        home.validateOurPartnersPage(browser);
+        HomePage_1.homePage.validateOurPartnersHeaderDisplayed(browser);
+        HomePage_1.homePage.validateViewOurPartnersBtnDisplayed(browser);
+        HomePage_1.homePage.clickOnViewOurPartnersBtn(browser);
+        HomePage_1.homePage.validateOurPartnersPage(browser);
     },
     /**
      * Test Case Covered : Verify “We compare some of Australia's biggest brands” section
      */
     'TC003 Verify View Our Partners Page and Partners Displayed on Page': function (browser) {
-        home.clickOnViewOurPartnersBtn(browser);
-        home.validateOurPartnersPage(browser);
-        home.validateHealthPartnersLogosDisplayed(browser);
-        home.validateEnergyPartnersLogosDisplayed(browser);
-        home.validateInternetPartnersLogosDisplayed(browser);
+        HomePage_1.homePage.clickOnViewOurPartnersBtn(browser);
+        HomePage_1.homePage.validateOurPartnersPage(browser);
+        HomePage_1.homePage.validateHealthPartnersLogosDisplayed(browser);
+        HomePage_1.homePage.validateEnergyPartnersLogosDisplayed(browser);
+        HomePage_1.homePage.validateInternetPartnersLogosDisplayed(browser);
     },
     /**
      * Test Case Covered : Verify the “You may be interested in...” section
      */
     'TC004 Verify the You may be interested in... section': function (browser) {
-        home.validateYouMightBeInterestHeader(browser);
-        home.validateLinksPresentInYouMightBeInterSection(browser, data.TC004Data.SolarEnergyBasicsPageTitle, data.TC004Data.SwitchElecAndGasPageTitle, data.TC004Data.ElecPlanPageTitle, data.TC004Data.GridConnectPageTitle, data.TC004Data.SaveEnergyPageTitle);
+        HomePage_1.homePage.validateYouMightBeInterestHeader(browser);
+        HomePage_1.homePage.validateLinksPresentInYouMightBeInterSection(browser, data.TC004Data.SolarEnergyBasicsPageTitle, data.TC004Data.SwitchElecAndGasPageTitle, data.TC004Data.ElecPlanPageTitle, data.TC004Data.GridConnectPageTitle, data.TC004Data.SaveEnergyPageTitle);
     },
     /**
      * Test Case Covered : Verify the Tool tip support center number(131920)
      */
     'TC005 Verify the Tool tip support center number(131920)': function (browser) {
-        home.validateCallUsToolTip(browser);
+        HomePage_1.homePage.validateCallUsToolTip(browser);
     },
     /**
      * Test Case Covered : Verify the functionality of “Compare Electricity & Gas” button
      */
     'TC006 Verify the functionality of “Compare Electricity & Gas” button': function (browser) {
-        home.moveToBottomofPage(browser);
-        home.clickAndValidateCompElecandGasBtn(browser);
+        HomePage_1.homePage.moveToBottomofPage(browser);
+        HomePage_1.homePage.clickAndValidateCompElecandGasBtn(browser);
     },
     /**
      * Test Case Covered : Verify social media links available at the bottom of the page
      */
     'TC007 Verify social media links available at the bottom of the page': function (browser) {
-        home.moveToBottomofPage(browser);
-        home.validateSocialMediaLinks(browser);
+        HomePage_1.homePage.moveToBottomofPage(browser);
+        HomePage_1.homePage.validateSocialMediaLinks(browser);
     },
     /**
      * Test Case Covered : Verify the links available below "About iSelect"
      */
     'TC008 Verify the links available below About iSelect': function (browser) {
-        home.moveToBottomofPage(browser);
+        HomePage_1.homePage.moveToBottomofPage(browser);
         for (let i = 0; i < data.TC008Data.AboutIselectLink.length - 2; i++) {
-            home.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[i], false);
+            HomePage_1.homePage.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[i], false);
         }
         /**For Asserting the Multiple Xpaths*/
-        home.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[11], true);
-        home.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[12], true);
+        HomePage_1.homePage.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[11], true);
+        HomePage_1.homePage.validateAboutIselectLinks(browser, data.TC008Data.AboutIselectLink[12], true);
     },
     /**
      * Test Case Covered : Verify the links available below "2019 Partner Awards"
      */
     'TC009 Verify the links available below 2019 Partner Awards': function (browser) {
-        home.moveToBottomofPage(browser);
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0]);
-        home.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1]);
+        HomePage_1.homePage.moveToBottomofPage(browser);
+        HomePage_1.homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[0]);
+        HomePage_1.homePage.validate2019PartnerAwardsLinks(browser, data.TC009Data.PartnersAwardsLink[1]);
     },
     /**
      * Runs Before Each Test Case
@@ -124,16 +119,17 @@ module.exports = {
         browser
             .resizeWindow(1400, 900)
             .maximizeWindow()
-            .timeoutsImplicitWait(30000)
+            .timeoutsImplicitWait(20000)
             .url(browser.launch_url);
+        browser.globals.abortOnAssertionFailure = false;
     },
     /**
      * Runs After Each Test Case
      * @param browser NightWatch Browser
      */
     afterEach: function (browser) {
+        // if (browser.currentTest.results.failed >= 1)
+        //     browser.saveScreenshot('./screenshots/'+util.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
         browser.end();
-        if (browser.currentTest.results.failed >= 1)
-            browser.saveScreenshot('./screenshots/' + util.random(8) + '.png', () => console.log('screenshot catured for the failed test case'));
     },
 };

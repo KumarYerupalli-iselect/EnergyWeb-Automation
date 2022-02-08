@@ -18,17 +18,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+Object.defineProperty(exports, "__esModule", { value: true });
 /** Data Object */
 const data = __importStar(require("../../data/HomePageData.json"));
 /** Home Page Object */
-const HomePage_1 = __importDefault(require("../../page/HomePage"));
-const home = new HomePage_1.default();
-/**Utils Object */
-const Util_1 = __importDefault(require("../../utils/Util"));
-const util = new Util_1.default();
+const HomePage_1 = require("../../page/HomePage");
 /** Your Usage Page Object */
 const YourUsagePage_1 = require("../../page/YourUsagePage");
 module.exports = {
@@ -39,9 +33,9 @@ module.exports = {
     '@disabled': false,
     '@tags': ['TC010'],
     'TC010 Verify the Contact Us Section in Your Usage Page': (browser) => {
-        home.enterAddress(browser, data.CommonData.PostCode);
-        home.clickOnAddressOption(browser);
-        home.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle);
+        HomePage_1.homePage.enterAddress(browser, data.CommonData.PostCode);
+        HomePage_1.homePage.clickOnAddressOption(browser);
+        HomePage_1.homePage.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle);
         YourUsagePage_1.yourUsagePage.validateCallUsSection(browser);
     },
     /**
@@ -60,8 +54,8 @@ module.exports = {
      * @param browser NightWatch Browser
      */
     afterEach: function (browser) {
-        browser.end();
-        if (browser.currentTest.results.failed >= 1)
-            browser.saveScreenshot('./screenshots/' + util.random(8) + '.png', () => console.log('screenshot catured for the failed test case'));
+        // browser.end()
+        // if (browser.currentTest.results.failed >= 1)
+        //     browser.saveScreenshot('./screenshots/'+util.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
     },
 };

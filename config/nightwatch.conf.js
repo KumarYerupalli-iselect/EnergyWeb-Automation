@@ -12,7 +12,7 @@ module.exports = {
   custom_assertions_path: [
     'node_modules/nightwatch-vrt/assertions',
   ],
-   globals_path : "../config/global.js",
+   globals_path : "../config/globals.js",
 
   webdriver: {
     start_process: true,
@@ -25,7 +25,7 @@ module.exports = {
   },
 
   test_settings: {
-    uat: {
+    default: {
       screenshots : {
         "enabled" : true,
         "on_failure" : true,
@@ -67,11 +67,6 @@ module.exports = {
     },
 
     prod: {
-      screenshots : {
-        "enabled" : true,
-        "on_failure" : true,
-        "path" : "./screens"
-      },
       launch_url: 'https://www.iselect.com.au/energy/',
       skip_testcases_on_fail: false,
       globals: {

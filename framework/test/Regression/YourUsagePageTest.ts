@@ -3,15 +3,13 @@ import * as data from '../../data/HomePageData.json';
 /** NightWatch Browser */
 import { NightwatchBrowser } from "nightwatch";
 /** Home Page Object */
-import HomePage from "../../page/HomePage";
-const home = new HomePage();
+import {homePage} from "../../page/HomePage";
 /**Utils Object */
-import Util from '../../utils/Util';
-const util = new Util();
+import {helperUtils} from "../../utils/helperUtils";
 /** Your Usage Page Object */
 import {yourUsagePage} from '../../page/YourUsagePage'
 
-export = {
+module.exports = {
     /**
      * Test cases Covered : Verify contact number on the header
                             Verify "Opening Hours" link
@@ -19,9 +17,9 @@ export = {
     '@disabled': false,
     '@tags':['TC010'],
     'TC010 Verify the Contact Us Section in Your Usage Page': (browser: NightwatchBrowser) => {
-        home.enterAddress(browser, data.CommonData.PostCode)
-        home.clickOnAddressOption(browser)
-        home.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle)
+        homePage.enterAddress(browser, data.CommonData.PostCode)
+        homePage.clickOnAddressOption(browser)
+        homePage.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle)
         yourUsagePage.validateCallUsSection(browser);
     },
 
@@ -42,9 +40,9 @@ export = {
      * @param browser NightWatch Browser
      */
     afterEach: function (browser: NightwatchBrowser) {
-        browser.end()
-        if (browser.currentTest.results.failed >= 1)
-            browser.saveScreenshot('./screenshots/'+util.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
+        // browser.end()
+        // if (browser.currentTest.results.failed >= 1)
+        //     browser.saveScreenshot('./screenshots/'+util.random(8)+'.png',() => console.log('screenshot catured for the failed test case'));
     },
 
 };

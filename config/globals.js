@@ -3,15 +3,15 @@ let reporter = new HtmlReporter({
   openBrowser: true,
   relativeScreenshots: true,
   themeName: 'compact',
-  reportsDirectory: __dirname + './../../reports/',
+  reportsDirectory: __dirname + './../../tests_output/',
 });
 
 module.exports = {
   timeoutValue: 50000,
   xtraLongTimeout: 75000,
-  password: 'Testing@LL',
-  userName: 'test@yopmail.com',
-  testSearchData: 'Elon Musk',
+  password: 'xxxxx',
+  userName: 'xxxxx',
+  testSearchData: 'xxxxx',
   reporter: reporter.fn,
 };
 

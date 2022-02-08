@@ -21,7 +21,7 @@ export const helperUtils= {
      * then we do other user actions on this webElement
      */
     verifyWebElementExistForInteraction(browser: NightwatchBrowser , 
-      verificationType: string, selector: string, waitTime: number, abortOnFailure: boolean, successMessage: string){
+      verificationType: "present" | "visible" | "isVisible" | "enabled", selector: string, waitTime: number, abortOnFailure: boolean, successMessage: string){
             if (verificationType === "present") {
               browser.useXpath().waitForElementPresent(selector, waitTime, abortOnFailure, () => {
                 console.log("CallBack : Status of webElement present");
@@ -111,6 +111,28 @@ export const helperUtils= {
         }
      },
 
+     assertWebElementOrItsValue(browser: NightwatchBrowser, assertionType: string, 
+      selector: string, expectedText: string) {
+        switch (assertionType) {
+          case "isEqual":
+            browser.expect.element(selector).to.have.value.that.equals(expectedText);
+            break;
+
+          case "toContain":
+            browser.expect.element(selector).to.have.value.which.contains(expectedText);
+            break;
+            
+          case "isNotEqual":
+            browser.expect.element(selector).to.have.value.not.equals(expectedText);
+            break;
+
+          case "match":
+            browser.expect.element(selector).to.have.value.which.match(expectedText);
+            break;    
+            
+        }
+     },
+
     switchToPrimaryWindow(browser: NightwatchBrowser) {
       browser.windowHandles((result) => {
         let handle = result.value[0];
@@ -185,11 +207,19 @@ export const helperUtils= {
        browser.sendKeys(selector, value, () => {
           console.log("CallBack :entering input value as " + value );
        }); 
-     }
+     },
 
-     
+      moveToElement(browser: NightwatchBrowser, selector: string, message : string) {
+      return browser.useXpath()
+        .waitForElementVisible(selector, 20000, true, null, message)
+        .getLocationInView(selector, (result) => {
+          browser.moveToElement(selector, result.value[0], result.value[1])
+        });
+      },
 
-     
+      random(length: number) {
+        return Math.random().toString(16).substr(2, length);
+      }
      
 
 
