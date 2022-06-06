@@ -1,7 +1,10 @@
-#Ignores the Respective Files while Pushing it to git
 node_modules
-
-chromedriver.log
-allure-report
-allure-results
 tests_output
+tests/build/functionalTests
+tests/build/pageObjects
+tests/build/utilities
+package-lock.json
+.prettierignore
+.prettierrc
+
+
