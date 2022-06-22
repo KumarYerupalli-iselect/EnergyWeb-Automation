@@ -49,7 +49,7 @@ export const yourUsagePage = {
         considerSolarPanel : '//h2[text()="Your Electricity Details"]/../fieldset/div[2]/div[2]/div/div/input/..//label[text()="Yes"]',
 
 
-        yourSummarySection : '//h2[text()="Your summary"]/..',
+        
         continueBtn : '//input[@value="Continue"]',
 
         moveInDate : '//input[@id="datepicker"]',
@@ -72,9 +72,179 @@ export const yourUsagePage = {
         callFormAddress : '//div[text()="Postcode / Suburb:"]/../div[2]/div/input',
         callFormMyHomeProperty : '//div[text()="What type of property?:"]/../label[1]',
         callFormMyBusinessProperty : '//div[text()="What type of property?:"]/../label[2]',
-        callFormCallMeBtn : '//input[@value="Call me"]'
+        callFormCallMeBtn : '//input[@value="Call me"]',
+
+        recntElecBillQtn : '//input[@id="elecbill3"]/../../../../div[1]',
+        recentElecBillOpt : '//input[@id="elecbill3"]/../label[text()="No"]',
+        
+        iHavePaperBillBox : '//div[text()="I have a paper bill"]/../..',
+        howMuchElecBillField : '//input[@id="Electricity_Bill"]',
+        howManDaysBillPeriod : '//input[@id="Electricity_BillingDays"]',
+        hoeMuchChargedForElec : '//input[@id="singleRate"]/../../../../../../../div[1]',
+        singleRateOpt : '//input[@id="singleRate"]',
+        singleRateControlledLoadOpt : '//input[@id="twoRate"]',
+        timeOfUseOpt : '//input[@id="TOU"]',
+
+        howMuchGasBillField : '//input[@id="Gas_Bill"]',
+        howManyDaysGasBillPeriod : '//input[@id="Gas_BillingDays"]',
+        gasPeakField : '//input[@id="Gas_peak"]',
+        gasOffPeakField : '//input[@id="Gas_offPeak"]',
+
+        recentGasBillQtn : '//input[@id="gasbill3"]/../../../../div[1]',
+        recentGasBillOpt : '//input[@id="gasbill3"]/../label[text()="No"]',
+
+        electUsageQtn : '//input[@name="UsageLevel"]/../../../../../../../div[1]',
+        gasUageQtn : '//input[@name="gasUsageLevel"]/../../../../../../../div[1]',
+
+        /** Your Details Page */
+        yourName : '//input[@name="fullName"]',
+        yourMobileNo : '//input[@name="MobileNo"]',
+        yourEmail : '//input[@name="EmailAddress"]',
+        viewResultsBtn : '//input[@value="View Results"]',
+        backBtn : '//input[@value="BACK"]',
+
+        yourSummarySection : '//h2[text()="Your summary"]/..',
+        didYouKnowSection : '//h2[text()="Did you know?"]/../../..',
+
+        /**Compare page */
+        comparePageHeader : '//h1[text()="Electricity & Gas Comparison"]',
+        yourSearchHeader : '//h2[text()="SEARCH"]/..//h2[text()="YOUR"]',
+
+        yourSearchSection : '//div[@id="urSum"]',
+        saveSearchBtn : '//li[text()="Search saved"]',
+        shareSearchBtn : '//a[text()="Share this search"]',
+        providerSection : '//div[@id="refOpt"]//h2[text()="Provider"]/..',
+        contAndEnergyFacSheetSection : '//div[@id="refOpt"]//h2[text()="Contract length "]/..',
+        lookingToCompSection : '//div[text()="I am looking to compare"]/..',
+        plsBeAwareSection : '//b[text()="Please be aware:"]/../..',
+        paginationSection : '//b[text()="View page"]/../..',
+        shareSearchEmail : '//input[@id="email"]',
+        shareSearchSaveBtn : '//input[@value="Save"]',
+        emailSentMsg : '//h3[text()="An email will be sent to you shortly."]',
+
+        providerCB : '//input[@value="EnergyAustralia"]',
+        providerClearAllBtn : '(//a[text()="Clear All"])[1]',
+        applyNowBtn : '(//a[text()="apply now"])[1]',
+        viewPlanDetBtn : '(//a[text()="VIEW PLAN DETAILS"])[8]',
+        viewPlanDetApplyBtn : '(//a[@id="applyBtn"])[2]',
+        viewPlanDetEmailPlanDetBtn : '//a[@id="emailPlan"]',
+        viewPlanDetDetailsPage : '//h3[text()="Features"]/..',
+
+        estimatedCostToolTipBtn : '(//h2[text()="Estimated Costs"]/../div/div[2]/a)[8]',
+        estimatedCostPopUp : '//h1[text()="Estimated Cost"]/..',
+        
+        addElecBillBtn : '//a[text()="Add my electricity bill"]',
+        addGasBillBtn : '//a[text()="Add my gas bill"]'
+    },
+
+    /**
+     * Validate and fill the Your Details Page
+     */
+    validateAndFillYourDetPage(browser : NightwatchBrowser, validate? : boolean) {
+        if(validate == true) {
+            browser.waitForElementVisible(this.elements.yourName, 10000, 100, undefined, undefined, 'Your Details Page Loaded..');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.yourName, 'Validation Successful.... Your Name Field is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.yourMobileNo, 'Validation Successful.... Your Mobile No Field is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.yourEmail, 'Validation Successful.... Your Email Address Field is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.yourSummarySection, 'Validation Successful.... Your Summary Section is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.didYouKnowSection, 'Validation Successful.... Did You Know Section is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.viewResultsBtn, 'Validation Successful.... View Results Button is Visible');
+            helperUtils.assertElementStatus(browser, 'visible', this.elements.backBtn, 'Validation Successful.... Back Button is Visible');
+        } else {
+            helperUtils.enterKeys(browser, 'xpath', this.elements.yourName, 'iSelect Test', 'Entered the Name : iSelect Test');
+            helperUtils.enterKeys(browser, 'xpath', this.elements.yourMobileNo, '0400-000-000', 'Entered the Mobile Number : 0400-000-000');
+            helperUtils.enterKeys(browser, 'xpath', this.elements.yourEmail, 'kumar.yerupalli@iselect.com.au', 'Entered the Email : kumar.yerupalli@iselect.com.au');
+            browser.pause(3000);
+            helperUtils.click(browser, 'xpath', this.elements.viewResultsBtn, 'Clicked on View results Button');
+        }
+        
+    },
+
+    /**
+     * Validate Compare page
+     */
+    validateComparePage(browser: NightwatchBrowser) {
+        browser.waitForElementVisible(this.elements.yourSearchHeader, 10000, 100, undefined, undefined, 'Validation Successful... View Results Page Loaded..');
+        browser.click('//div[@class="closeBubble"]');
+        //browser.refresh();
+        browser.waitForElementVisible(this.elements.yourSearchHeader, 10000, 100, undefined, undefined, 'Page Refreshed..');
+        browser.pause(5000);
+        browser.assert.titleEquals('View Your Results | iSelect', 'Title Matches');
+
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.addElecBillBtn, 'Validation Successful... Add Electricity Bill Button is Visible and Enabled');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.addGasBillBtn, 'Validation Successful... Add Gas Bill Button is Visible and Enabled');
+
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.yourSearchSection, 'Validation Successful... Your Search Section is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.saveSearchBtn, 'Validation Successful... Save Search Button is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.shareSearchBtn, 'Validation Successful... Share Search Button is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.providerSection, 'Validation Successful... Provider Section is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.contAndEnergyFacSheetSection, 'Validation Successful... Contract length and Energy Fact Sheet Section is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.lookingToCompSection, 'Validation Successful... Im Looking to Compare Section is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.plsBeAwareSection, 'Validation Successful... Please be aware Section is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.paginationSection, 'Validation Successful... Pagination Section is Visible');
+        
+        browser.execute('window.scrollTo(0, 1000)');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.applyNowBtn, 'Validation Successful... Apply Now Button is Visible');
+        browser.execute('window.scrollTo(0, -1000)');
+        browser.pause(4000);
+        browser.execute('window.scrollTo(0, 750)');
+
+        helperUtils.click(browser, 'xpath', this.elements.estimatedCostToolTipBtn, 'Clicked on Estimated Cost Tool Tip Button');
+        browser.pause(3000);
+        browser.frame(0);
+        helperUtils.verifyWebElementExistForInteraction(browser,'isVisible', this.elements.estimatedCostPopUp, 10000, 100, undefined, 'Estimated Cost PopUp is Visible');
+        browser.frame(null);
+        browser.click('//button[@title="Close (Esc)"]');
+
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.viewPlanDetBtn, 'Validation Successful... View Plan Details Button is Visible');
+        helperUtils.click(browser, 'xpath', this.elements.viewPlanDetBtn, 'Clicked on View Plan Details Button.');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.viewPlanDetApplyBtn, 'Validation Successful... Apply Now Button is Visible in View Plan Details Page');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.viewPlanDetEmailPlanDetBtn, 'Validation Successful... Email Plan details Button is Visible View Plan Details Page');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.viewPlanDetDetailsPage, 'Validation Successful... View Plan Details Features Page is Visible');
 
 
+        helperUtils.click(browser, 'xpath', this.elements.providerCB, 'Selected Provider');
+        helperUtils.click(browser, 'xpath', this.elements.providerClearAllBtn, 'Clicked on Provider Clear All Button');
+    },
+
+    /**
+     * Validates the Save Search Email
+     */
+    validateSaveSearchMail(browser : NightwatchBrowser) {
+        helperUtils.click(browser, 'xpath', this.elements.shareSearchBtn, 'Clicked on Share Search Button');
+        browser.pause(3000);
+        browser.frame(0);
+        helperUtils.enterKeys(browser, 'xpath', this.elements.shareSearchEmail, 'kumar.yerupalli@iselect.com.au', 'Email Entered..');
+        helperUtils.click(browser, 'xpath', this.elements.shareSearchSaveBtn, 'Clicked on Save Button');
+        helperUtils.verifyWebElementExistForInteraction(browser, 'isVisible', this.elements.emailSentMsg, 10000, 100, undefined, 'Validation Successful.. Email Sent Success Message is Displayed.');
+    },
+
+    /**
+     * Validates the Your Electricity details Page
+     */
+    validateYourElectricityDetailsForm(browser:NightwatchBrowser) {
+        helperUtils.click(browser, 'xpath', this.elements.iHavePaperBillBox, 'Clicked on I have Paper Bill Option');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.howMuchElecBillField, 'Validation Successful... How much is your bill? Question is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.howManDaysBillPeriod, 'Validation Successful... How many days are in the billing period? Question is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.hoeMuchChargedForElec, 'Validation Successful... How are you charged for electricity? Question is Visible');
+    },
+
+    /**
+     * Validates the Your Gas details Page
+     */
+     validateYourGasDetailsForm(browser:NightwatchBrowser) {
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.howMuchGasBillField, 'Validation Successful... How much is your bill? Question for Gas Details is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.howManyDaysGasBillPeriod, 'Validation Successful... How many days are in the billing period? Question for Gas details is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasPeakField, 'Validation Successful... What is the usage amount on your bill? Question  with Gas Peak is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasOffPeakField, 'Validation Successful... What is the usage amount on your bill? Question  with Gas off-Peak Question is Visible');
+    },
+
+    /**
+     * Validates the Electricity and Gas Usage Questions when clicked on No option for Recent Bills Questions
+     */
+    validateElecAndGasUsageQts(browser:NightwatchBrowser) {
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.electUsageQtn, 'Validation Successful... " What level best describes your typical electricity usage? " Question is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasUageQtn, 'Validation Successful... " What level best describes your typical gas usage? " Question is Visible');
     },
   
     /**
@@ -162,6 +332,23 @@ export const yourUsagePage = {
     },
 
     /**
+     * Clicks on "Do you have a recent electricity bill available? *" Options Based on Data
+     * @param browser NightWatchBrowser
+     */
+     clickOnRecentElecBillQtnOpts(browser : NightwatchBrowser, optValue : string) {
+        helperUtils.click(browser, 'xpath', '//label[text()="'+ optValue +'"]/..//input[@name="elecScenario"]', optValue + ' is Clicked in.. Do you have a recent electricity bill available? *');
+    },
+
+    /**
+     * Clicks on "Do you have a recent Gas bill available? *" Options Based on Data
+     * @param browser NightWatchBrowser
+     */
+     clickOnRecentGasBillQtnOpts(browser : NightwatchBrowser, optValue : string) {
+        helperUtils.click(browser, 'xpath', '//label[text()="'+ optValue +'"]/..//input[@name="gasScenario"]', optValue + ' is Clicked in.. Do you have a recent gas bill available? *');
+    },
+
+
+    /**
      * Select Move In Date
      */
     selectMoveInDate(browser:NightwatchBrowser, dateCount:number) {
@@ -176,6 +363,21 @@ export const yourUsagePage = {
         helperUtils.click(browser, 'xpath', '//span[text()="'+ month +'"]/../../../table/tbody/tr/td//a[text()="'+ days +'"]', 'Selected ' + month + ' ' +days+' Date');
         helperUtils.assertElementStatus(browser, 'visible', this.elements.letusCallBtn, 'Let Us call button is visible');
             
+    },
+
+    /**
+     * Verify that Move in Date Should not be present
+     */
+    validateMoveinDateNotPresent(browser:NightwatchBrowser) {
+        browser.waitForElementNotVisible(this.elements.moveInDate, 2000, 200, undefined, undefined, 'Validation SUccessful... Move in Date question is not visible.');
+    },
+
+    /**
+     * Validates the Electricity and gas bill questions
+     */
+    validateElecAndGasBillQtns(browser:NightwatchBrowser) {
+        browser.waitForElementVisible(this.elements.recntElecBillQtn, 5000, 200, undefined, undefined, 'Validation Successful... Do you have a recent electricity bill available? * is Visible');
+        browser.waitForElementVisible(this.elements.recentGasBillQtn, 5000, 200, undefined, undefined, 'Validation Successful... Do you have a recent gas bill available? * is Visible');
     },
 
     /**
@@ -368,7 +570,7 @@ export const yourUsagePage = {
      * Clicks on Terms And Conditions Checkbox in needs page
      */
       clickOnTermsAndCOnditionsCB(browser:NightwatchBrowser) {
-        helperUtils.click(browser, 'xpath', this.elements.complianceCB , 'Terms & Conditions Checkbox is Visible clicking On it.');
+        helperUtils.click(browser, 'xpath', this.elements.termsAndConditionsCB , 'Terms & Conditions Checkbox is Visible clicking On it.');
     },
 
     /**
@@ -404,6 +606,7 @@ export const yourUsagePage = {
             console.log("Value is : " +result.value);
         });
     },
+
     /**
      * Validates the Let Us Call Form
      */
@@ -417,7 +620,16 @@ export const yourUsagePage = {
         helperUtils.assertElementStatus(browser, 'visible', this.elements.callFormMyHomeProperty, 'My Home Property Option Field is Visible in Let Us call Form');
         helperUtils.assertElementStatus(browser, 'visible', this.elements.callFormMyBusinessProperty, 'My Businesss Property Option Field is Visible in Let Us call Form');
         helperUtils.assertElementStatus(browser, 'visible', this.elements.callFormCallMeBtn, 'Call Me Button is Visible in Let Us call Form');
-    }
+    },
+
+     /**
+   * Validates the About iSelect section Links
+   * @param browser Nightwatch Browser
+   * @param yourNeedsPageLink About iSelect Links
+   */
+   validateYourNeedsPageLinks(browser:NightwatchBrowser, yourNeedsPageLink : string) {
+    helperUtils.assertElementStatus(browser,'visible','//a[text()="' + yourNeedsPageLink + '"]', yourNeedsPageLink + ' Link in Your Needs Page is Visible');
+},
 
 };
   

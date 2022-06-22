@@ -2,7 +2,21 @@
     "CommonData": {
         "__COMMENT__": "Common Data",
         "PostCode": "500",
-        "Address": " 5000, Adelaide"
+        "Address": " 5000, Adelaide",
+        "LookingToCompareOpts": ["Electricity & Gas", " Electricity", "Gas"],
+        "TypeOfPropertyOpts": ["My home", " My business"],
+        "ownOrRentPropertyOpt": ["Own", "Rent"],
+        "movingToHouseOpts": ["movehouse", "compareplans"],
+        "ElecProviderOpts": ["ActewAGL", "AGL", "Alinta Energy", "Click Energy", "Commander Power and Gas", "Cova U", "Diamond Energy", "Dodo Power and Gas", "EnergyAustralia", "Ergon Energy", "Horizon Power", "Lumo Energy", "Mojo Power", "Momentum Energy", "Origin Energy", "Pacific Hydro", "People Energy", "Powerdirect", "Powershop", "RED Energy", "Sanctuary Energy", "Simply Energy", "Sumo Power", "Other", "Don't Know"],
+        "GasProviderOpts": ["ActewAGL", "AGL", "Alinta Energy", "Click Energy", "Dodo Power and Gas", "EnergyAustralia", "Lumo Energy", "Momentum Energy", "Origin Energy", "RED Energy", "Simply Energy", "Other", "Don't Know"],
+        "ErrorMsgs": ["Please select which product to compare", "Please select your property type", "Please select if you own or rent the property.", "Please select if you are moving into this property", "Please select if you have a recent bill available", "Please select if you have rooftop solar panels", "Please select a current provider", "Please select your electricity usage", "Please select a current provider", "Please select your gas usage", "Please agree to the terms and conditions"],
+        "ConnectionToBBOpts": ["YES", "NO"],
+        "SolarPanelOpts": ["YES", "NO"],
+        "ConsiderSolPanelOpts": ["Yes", "No"],
+        "ElecProvider": ["ActewAGL", "AGL", "Alinta Energy", "Click Energy", "Commander Power and Gas", "Cova U", "Diamond Energy", "Dodo Power and Gas", "EnergyAustralia", "Ergon Energy", "Horizon Power", "Lumo Energy", "Mojo Power", "Momentum Energy", "Origin Energy", "Pacific Hydro", "People Energy", "Powerdirect", "Powershop", "RED Energy", "Sanctuary Energy", "Simply Energy", "Sumo Power", "Other", "Don't Know"],
+        "ElecUsageOpt": ["Low", "Med", "High"],
+        "GasProvider": ["ActewAGL", "AGL", "Alinta Energy", "Click Energy", "Dodo Power and Gas", "EnergyAustralia", "Lumo Energy", "Momentum Energy", "Origin Energy", "RED Energy", "Simply Energy", "Other", "Don't Know"],
+        "GasUsageOpt": ["Low", "Med", "High"]
     },
     "TC012": {
         "LookingToCompareOpts": ["Electricity & Gas", " Electricity", "Gas"],
@@ -24,5 +38,12 @@
     },
     "TC014": {
         "ErrorMsgs": ["Please enter valid date in dd-mm-yyyy format"]
+    },
+    "TC015": {
+        "NeedsPageLinks": ["Participating Providers", "How iSelect Works", "Privacy Policy", "Terms & Conditions", "Disclaimer", "Contact us"]
+    },
+    "TC016": {
+        "RecElecBillOpts": ["Yes", "No"],
+        "RecGasBillOpts": ["Yes", "No"]
     }
 }

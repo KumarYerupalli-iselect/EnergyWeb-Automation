@@ -333,6 +333,8 @@ export const homePage = {
     helperUtils.assertElementStatus(browser, 'visible','//span[text()="' + partnerawardslink + '"]/..', partnerawardslink + ' Link in 2019 Partners Awards Section is Visible')
   }
 
+ 
+
 };
 
 
