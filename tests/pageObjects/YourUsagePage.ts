@@ -134,7 +134,192 @@ export const yourUsagePage = {
         estimatedCostPopUp : '//h1[text()="Estimated Cost"]/..',
         
         addElecBillBtn : '//a[text()="Add my electricity bill"]',
-        addGasBillBtn : '//a[text()="Add my gas bill"]'
+        selectElecProviderField : '//select[@id="elecproviderlist"]',
+        electricityBillingDayField : '//input[@id="Electricity_BillingDays"]',
+        singleRateField : '//input[@id="singleRate"]/..',
+        twoRateField : '//input[@id="twoRate"]/..',
+        touField : '//input[@id="TOU"]/..',
+        elecGetYourEstimatedCost : '(//input[@value="Get your estimated cost"])[1]',
+        elecCancelBtn :'(//input[@value="CANCEL"])[1]',
+
+        addGasBillBtn : '//a[text()="Add my gas bill"]',
+        selectGasProvField : '//select[@id="gasproviderlist"]',
+        gasBillingDayField : '//input[@name="Gas_BillingDays"]',
+        gassPeakField : '//input[@id="Gas_peak"]',
+        gassOffPeakField : '//input[@id="Gas_offPeak"]',
+        gasGetYourEstimatedCost : '(//input[@value="Get your estimated cost"])[2]',
+        gasCancelBtn :'(//input[@value="CANCEL"])[2]',
+
+        estmtdElecPrice : '(//b[text()="Electricity"]/../../div[2]/div//p[text()="/30 days"])[8]',
+        estmtdGasPrice : '(//b[text()="Gas"]/../../div[2]/div//p[text()="/30 days"])[8]',
+
+        aglApplyNowBtn : '(//a[text()="apply now"])[13]',
+        continueWithThisPlanBtn : '//input[@value="Continue with this plan"]',
+        /** Contact details Page */
+        titleDD : '//select[@name="title"]',
+        dayField : '//select[@id="birthDay"]',
+        monthField : '//select[@id="birthMonth"]',
+        yearFiled : '//select[@id="birthYear"]',
+        addAccHolderNoOpt : '//input[@id="secAccNo"]',
+        addAccHolderYesOpt : '//input[@id="secAccYes"]',
+        contactDetNextBtn : '//input[@id="sec1Btn"]',
+
+        /** Personal Details Page */
+        identificationTypeField : '//select[@id="holderCurDrive"]',
+        identificationTypeOpt : '//option[text()="Drivers Licence - VIC"]',
+
+        identificationNumberField : '//input[@id="Electricity_License"]',
+        licenseExpiryday : '//select[@id="Licence_expiry_day"]',
+        licenseExpiryMonth : '//select[@id="Licence_expiry_month"]',
+        licenseExpiryYear : '//select[@id="Licence_expiry_year"]',
+        
+        concessionHolderField : '//select[@id="holderConsCard"]',
+
+        personalDetNextBtn : '//input[@id="sec2Btn"]',
+
+        /** Connection Details Page*/
+        unitField : '//input[@id="resunitno"]',
+        streetNo : '//input[@id="resstreetno"]',
+        streetName : '//input[@id="streetNameRes"]',
+        streetType : '//select[@id="streetNameResType_S"]',
+        findAddr : '//a[@id="res"]',
+        findaddrRadioBtn : '//input[@name="resAddress"]',
+        connectionDetNextBtn : '//input[@id="sec3Btn"]',
+
+        /** Terms and conditions Page */
+        productDetailsCB : '(//input[@name="productdetailsConsent"])[1]',
+        compliancCB : '//input[@name="complianceCheck1"]',
+        digitalSignCB : '(//input[@name="productdetailsConsent"])[2]',
+        emaiConsentCB : '//input[@name="emailConsent"]',
+        creditConsentCB : '//input[@name="creditConsent"]',
+        digiSignField : '//input[@id="digiFullName"]',
+        submitBtn : '//input[@id="secAllBtn"]',
+        confirmationMsg : '//td[text()="Reference ID"]'
+
+    },
+
+    fillCheckBoxesInApplyNowPage(browser:NightwatchBrowser) {
+        helperUtils.click(browser, 'xpath', this.elements.productDetailsCB, 'Product Details CheckBox checked.');
+        helperUtils.click(browser, 'xpath', this.elements.compliancCB, 'Compliance CheckBox checked.');
+        helperUtils.click(browser, 'xpath', this.elements.emaiConsentCB, 'Email Consent CheckBox checked.');
+        helperUtils.click(browser, 'xpath', this.elements.creditConsentCB, 'Credit Consent CheckBox checked.');
+        helperUtils.click(browser, 'xpath', this.elements.digitalSignCB, 'Digital Signature CheckBox checked.');
+        helperUtils.enterKeys(browser, 'xpath', this.elements.digiSignField, 'iselect test', 'Entered Signature');
+        helperUtils.click(browser, 'xpath', this.elements.submitBtn, 'Clicked on Submit Button');
+        helperUtils.verifyWebElementExistForInteraction(browser, 'isVisible', this.elements.confirmationMsg, 30000, 300, undefined, 'Order Succesfully Submitted');
+    },
+
+    fillConnectionDetaislInApplyNowPage(browser:NightwatchBrowser) {
+        helperUtils.enterKeys(browser, 'xpath', this.elements.unitField, '100', 'Entered Unit No.');
+        helperUtils.enterKeys(browser, 'xpath', this.elements.streetNo, '10', 'Entered Street No.');
+        helperUtils.enterKeys(browser, 'xpath', this.elements.streetName, 'King', 'Entered Street Name.');
+        helperUtils.click(browser, 'xpath', this.elements.streetType, 'Clicked on Street Type Field');
+        helperUtils.click(browser, 'xpath', '(//option[text()="STREET - ST"])[1]', 'Selected Street Option');
+
+        browser.click(this.elements.findAddr);
+        browser.click('(//input[@id="Postaladdress_check"])[1]');
+        helperUtils.click(browser, 'xpath', this.elements.findaddrRadioBtn, 'Clicked on Find Address Button');
+
+        helperUtils.click(browser, 'xpath', this.elements.connectionDetNextBtn, 'Clicked on Connection Details Button');
+
+
+    },
+
+    fillPersonalDetailsInApplyNowPage(browser:NightwatchBrowser) {
+        browser.doubleClick(this.elements.identificationTypeField);
+        helperUtils.click(browser, 'xpath', this.elements.identificationTypeOpt, 'Selected Indetification Type Option');
+        
+        helperUtils.enterKeys(browser, 'xpath', this.elements.identificationNumberField, '4672822', 'Enetered Identification Number');
+
+        browser.doubleClick(this.elements.licenseExpiryday);
+        helperUtils.click(browser, 'xpath', '//div[text()="Identification expiry date"]/../div[2]/div/select//option[text()="3"]', 'Selected 3 Option in Day field');
+        browser.doubleClick(this.elements.licenseExpiryMonth);
+        helperUtils.click(browser, 'xpath', '//div[text()="Identification expiry date"]/../div[2]/div[2]/select//option[text()="April"]', 'Selected April Option in Month field');
+        browser.doubleClick(this.elements.licenseExpiryYear);
+        helperUtils.click(browser, 'xpath', '//div[text()="Identification expiry date"]/../div[2]/div[3]/select//option[text()="2026"]', 'Selected 2026 Option in Year field');
+
+        browser.click(this.elements.concessionHolderField);
+        helperUtils.click(browser, 'xpath', '//option[text()="Not Applicable"]', 'Selected Not Applicable Option');
+
+        helperUtils.click(browser, 'xpath', '(//input[@value="No"])[1]', 'Selected No option');
+
+        helperUtils.click(browser, 'xpath', this.elements.personalDetNextBtn, 'Clicked on Next Button in Personal Details Section');
+
+    },
+
+    fillContactDetailsinApplyNowPage(browser:NightwatchBrowser) {
+        browser.waitForElementVisible(this.elements.yourSearchHeader, 10000, 100, undefined, undefined, 'Validation Successful... View Results Page Loaded..');
+        browser.click('//div[@class="closeBubble"]');
+        //helperUtils.click(browser, 'xpath', this.elements.aglApplyNowBtn, 'Clicked on Apply Now Button');
+        browser.doubleClick(this.elements.aglApplyNowBtn);
+        //helperUtils.click(browser, 'xpath', this.elements.continueWithThisPlanBtn, 'Clicked on Continue with this Plan Button');
+        browser.doubleClick(this.elements.titleDD);
+        helperUtils.click(browser, 'xpath', '(//option[text()="Mr"])[1]', 'Selected Mr Option');
+
+        browser.doubleClick(this.elements.dayField);
+        helperUtils.click(browser, 'xpath', '(//div[text()="Date of birth"]/../div[2]/select//option[text()="3"])[1]', 'Selected 3 Option in Day field');
+        browser.doubleClick(this.elements.monthField);
+        helperUtils.click(browser, 'xpath', '(//div[text()="Date of birth"]/../div[2]/div/select//option[text()="April"])[1]', 'Selected April Option in Month field');
+        browser.doubleClick(this.elements.yearFiled);
+        helperUtils.click(browser, 'xpath', '(//div[text()="Date of birth"]/../div[2]/div[2]/select//option[text()="1986"])[1]', 'Selected 1986 Option in Year field');
+        
+        //helperUtils.click(browser, 'xpath', this.elements.addAccHolderNoOpt, 'Clicked on Add Additional Account Holder No Option');
+        helperUtils.click(browser, 'xpath', this.elements.contactDetNextBtn, 'Clicked on Next Button in Contact Details Form');
+        //browser.pause(5000);
+    },
+
+    validateEstimatedElecAndGasPrice(browser:NightwatchBrowser) {
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.estmtdElecPrice, 'Validation Successful.... Estimated Electrictity Price is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.estmtdGasPrice, 'Validation Successful.... Estimated Gas Price is Visible');
+    },
+    /**
+     * Fills the Add Electricity Details Form
+     */
+    fillAddElecDetailsForm(browser:NightwatchBrowser) {
+        helperUtils.click(browser, 'xpath', this.elements.addElecBillBtn, 'Clicking on Add Electricity Button');
+        browser.pause(2000);
+        browser.doubleClick(this.elements.selectElecProviderField);
+        helperUtils.click(browser, 'xpath', '(//option[text()="Other"])[1]', 'Selected Other Option' );
+        helperUtils.enterKeys(browser, 'xpath', this.elements.electricityBillingDayField, '30', 'Entered 30 days');
+        helperUtils.click(browser, 'xpath', this.elements.singleRateField, 'Selected Singale Rate Option');
+        helperUtils.enterKeys(browser, 'xpath', '//input[@id="Electricity_singleRate_peak"]', '600', 'Entered Usage : 600');
+        helperUtils.click(browser, 'xpath', this.elements.elecGetYourEstimatedCost, 'Clicked on Get your Estimated Cost Button');
+    },
+
+    /**
+     * Fills the Add Gas Details Form
+     */
+     fillAddGasDetailsForm(browser:NightwatchBrowser) {
+        helperUtils.click(browser, 'xpath', this.elements.addGasBillBtn, 'Clicking on Add Gas Button');
+        browser.doubleClick(this.elements.selectGasProvField);
+        helperUtils.click(browser, 'xpath', '(//option[text()="Other"])[2]', 'Selected Other Option' );
+        helperUtils.enterKeys(browser, 'xpath', this.elements.gasBillingDayField, '30', 'Entered 30 days');
+        helperUtils.enterKeys(browser, 'xpath', this.elements.gassPeakField, '2000', 'Entered Usage : 2000');
+        helperUtils.click(browser, 'xpath', this.elements.gasGetYourEstimatedCost, 'Clicked on Get your Estimated Cost Button');
+    },
+
+    /**
+     * Validates the Add Electricity and Add Gas button Forms in Results Page
+     */
+    validateAddElecAndGasFormsinResultsPage(browser:NightwatchBrowser){
+        helperUtils.click(browser, 'xpath', this.elements.addElecBillBtn, 'Clicking on Add Electricity Button');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.selectElecProviderField, 'Validation Successful.... Select Electricity Provider Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.electricityBillingDayField, 'Validation Successful.... Electricity Billing Day Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.singleRateField, 'Validation Successful.... Single Rate Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.twoRateField, 'Validation Successful....Two Rate Field is Visible');
+        //helperUtils.assertElementStatus(browser, 'visible', this.elements.touField, 'Validation Successful.... TOU Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.elecGetYourEstimatedCost, 'Validation Successful.... Electricity Estimated Cost Button is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.elecCancelBtn, 'Validation Successful.... Cancel Button is Visible');
+        helperUtils.click(browser, 'xpath', this.elements.elecCancelBtn, 'Clicking on Cancel Button');
+
+        helperUtils.click(browser, 'xpath', this.elements.addGasBillBtn, 'Clicking on Add Gas Button');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.selectGasProvField, 'Validation Successful.... Select Gas Provider Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasBillingDayField, 'Validation Successful.... Gas Billing Day Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gassPeakField, 'Validation Successful.... Gas Peak Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gassOffPeakField, 'Validation Successful....Gas Off Peak Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasGetYourEstimatedCost, 'Validation Successful.... Get Your Estimated Cost Field is Visible');
+        helperUtils.assertElementStatus(browser, 'visible', this.elements.gasCancelBtn, 'Validation Successful.... Cancel Button is Visible');
+        helperUtils.click(browser, 'xpath', this.elements.gasCancelBtn, 'Clicking on Cancel Button');
     },
 
     /**
@@ -217,6 +402,8 @@ export const yourUsagePage = {
         helperUtils.enterKeys(browser, 'xpath', this.elements.shareSearchEmail, 'kumar.yerupalli@iselect.com.au', 'Email Entered..');
         helperUtils.click(browser, 'xpath', this.elements.shareSearchSaveBtn, 'Clicked on Save Button');
         helperUtils.verifyWebElementExistForInteraction(browser, 'isVisible', this.elements.emailSentMsg, 10000, 100, undefined, 'Validation Successful.. Email Sent Success Message is Displayed.');
+        //browser.click('//button[@title="Close (Esc)"]');
+        browser.back();
     },
 
     /**

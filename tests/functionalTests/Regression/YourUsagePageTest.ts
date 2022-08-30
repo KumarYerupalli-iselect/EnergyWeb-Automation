@@ -341,21 +341,97 @@ module.exports = {
         
     // },
 
+    // /**
+    //  * Test Cases Covered : Verify Your Details page 
+    //  *                      Verify that COMPARE page displayed when clicked on View results button
+    //  *                      Verify that Your Details page is removed from the ribbon when entered data in Your Details page and clicked on View Results button
+    //  *                      Verify that the UI in COMPARE page
+    //  *                      Verify that that “An email will be sent to you shortly.” message is displayed when clicked on Save button
+    //  *                      Verify that that selected Products are unselected when clicked on Clear all link
+    //  *                      "Verify that that below are displayed under each Provider
+    //                         - Apply Now button
+    //                         - View Plan Details button"
+    //                         Verify the UI of View Details page displayed when clicked on View details button
+    //                         Verify that Estimated Cost Popup window displayed when clicked on Read more link
+    //                         Verify that bill details button is displayed and enabled to the user for Gas and Electricity
+    //                         "For Electricity
+    //                         Verify the UI of Your Electricity Details section page displayed when clicked on Enter My bill details button
+    //                         "
+    //                         "For Electricity
+    //                         Verify that COMPARE page is displayed when clicked on Cancel button in Your Electricity Details section"
+    //                         "For Electricity
+    //                         Verify that Estimated Cost price is displayed in COMPARE page when clicked on GET YOUR ESTIMATED COST button"
+    //                         "For Gas
+    //                         Verify the UI of Your Gas Details section page displayed when clicked onAdd my gas Bill button
+    //                         "
+    //                         "For Gas
+    //                         Verify that COMPARE page is displayed when clicked on Cancel button in Your Gas Details section"
+    //                         "For Gas
+    //                         Verify that Estimated Cost price is displayed in COMPARE page when clicked on GET YOUR ESTIMATED COST button"
+    //                         Verify that that Electricity Providers are displayed when selected Electricity in COMPARE page
+    //                         Verify that that Gas Providers are displayed when selected Gas in COMPARE page
+    //  */
+    // 'TC017 Verify YourDetails Page and Compare Page' : (browser : NightwatchBrowser) => {
+    //     /** Entering the Address */
+    //     homePage.enterAddress(browser, data.CommonData.PostCode);
+    //     /** Clicking on Address Option */
+    //     homePage.clickOnAddressOption(browser, data.CommonData.Address);
+    //     /** Validates the Your Usage Page */
+    //     homePage.validateYourUsagePage(browser, data.TC003Data.YourUsagePageTitle);
+    //     /** Selecting 'ELECTRICITY & GAS' option in "What are you looking to compare?" Question */
+    //     yourUsagePage.clickOnLookToCompOpts(browser, yourUsageData.CommonData.LookingToCompareOpts[0]);
+    //     /** Selecting 'My Home' option in " What type of property? " Question */
+    //     yourUsagePage.clickOnTypeOfPropertyOpts(browser, yourUsageData.CommonData.TypeOfPropertyOpts[0]);
+    //     /** Selecting 'Own' option in " Do you own or rent the property? " Question */
+    //     yourUsagePage.clickOnOwnOrRentPropOpts(browser, yourUsageData.CommonData.ownOrRentPropertyOpt[1]);
+    //     /** Selecting 'No' option in " Are you moving into this property? " Question */
+    //     yourUsagePage.clickOnMoveIntoThisPropOpts(browser, yourUsageData.CommonData.movingToHouseOpts[1]);
+    //     /** Selecting 'NO' option in " Are you moving into this property? " Question */
+    //     yourUsagePage.clickOnMoveIntoThisPropOpts(browser, yourUsageData.CommonData.movingToHouseOpts[1]);
+    //     /** Clicks on "No" option in "Do you have a recent electricity bill available? *" */
+    //     yourUsagePage.clickOnRecentElecBillQtnOpts(browser, yourUsageData.TC016.RecElecBillOpts[1]);
+    //     /** Clicks on "No" option in "Do you have a recent gas bill available? *" */
+    //     yourUsagePage.clickOnRecentGasBillQtnOpts(browser, yourUsageData.TC016.RecGasBillOpts[1]);
+    //     /** Clicks on 'YES' Option in 'Do you have rooftop solar panels?' */
+    //     yourUsagePage.clicksOnRoofTopPanelOpts(browser, yourUsageData.CommonData.SolarPanelOpts[0])
+    //     /** Selectes the "People Energy" Elec Provider from 'Who is your current electricity provider?' Question */
+    //     yourUsagePage.selectElecProvFromList(browser, yourUsageData.CommonData.ElecProvider[16]);
+    //     /** Clicks on "Medium" Electricity Usage  */
+    //     yourUsagePage.selectElecUsage(browser, yourUsageData.CommonData.ElecUsageOpt[0]);
+    //     /** Selects the Gas Provider */
+    //     yourUsagePage.selectGasProvFromList(browser, yourUsageData.CommonData.GasProvider[1]);
+    //     /** Clicks on "Medium" Gas Usage  */
+    //     yourUsagePage.selectGasUsage(browser, yourUsageData.CommonData.GasUsageOpt[0]);
+    //     /** Clicks on Compliance Checkbox */
+    //     yourUsagePage.clickOnComplianceCB(browser);
+    //     /** Clicks on Terms And Conditions CheckBox */
+    //     yourUsagePage.clickOnTermsAndCOnditionsCB(browser);
+    //     /** Clicks on Continue Button  */
+    //     yourUsagePage.clickOnContinueBtn(browser);
+    //     /** Validates the Your Details Page */
+    //     yourUsagePage.validateAndFillYourDetPage(browser, true);
+    //     /** Fills the Your details Page */
+    //     yourUsagePage.validateAndFillYourDetPage(browser);
+    //     /** Validates the Compare Page */
+    //     yourUsagePage.validateComparePage(browser);
+    //     /** Validates the Save Search Mail */
+    //     yourUsagePage.validateSaveSearchMail(browser);
+    //     /** Validates the Add Electricity and Add Gas Forms Buttons */
+    //     yourUsagePage.validateAddElecAndGasFormsinResultsPage(browser);
+    //     browser.pause(5000);
+    //     /** Fills the Add Electricity Bill Details Form*/
+    //     yourUsagePage.fillAddElecDetailsForm(browser);
+    //     /** Fills the Add Gas Bill Details Form */
+    //     yourUsagePage.fillAddGasDetailsForm(browser);
+    //     /** Validates the Estimated Electricity and Gas Price */
+    //     yourUsagePage.validateEstimatedElecAndGasPrice(browser);
+    // },
+
     /**
      * Test Cases Covered : Verify Your Details page 
-     *                      Verify that COMPARE page displayed when clicked on View results button
-     *                      Verify that Your Details page is removed from the ribbon when entered data in Your Details page and clicked on View Results button
-     *                      Verify that the UI in COMPARE page
-     *                      Verify that that “An email will be sent to you shortly.” message is displayed when clicked on Save button
-     *                      Verify that that selected Products are unselected when clicked on Clear all link
-     *                      "Verify that that below are displayed under each Provider
-                            - Apply Now button
-                            - View Plan Details button"
-                            Verify the UI of View Details page displayed when clicked on View details button
-                            Verify that Estimated Cost Popup window displayed when clicked on Read more link
-                            Verify that bill details button is displayed and enabled to the user for Gas and Electricity
+     *                      
      */
-    'TC017 Verify YourDetails Page and Compare Page' : (browser : NightwatchBrowser) => {
+    'TC018 Verify Apply Now Page' : (browser : NightwatchBrowser) => {
         /** Entering the Address */
         homePage.enterAddress(browser, data.CommonData.PostCode);
         /** Clicking on Address Option */
@@ -392,14 +468,17 @@ module.exports = {
         yourUsagePage.clickOnTermsAndCOnditionsCB(browser);
         /** Clicks on Continue Button  */
         yourUsagePage.clickOnContinueBtn(browser);
-        /** Validates the Your Details Page */
-        yourUsagePage.validateAndFillYourDetPage(browser, true);
         /** Fills the Your details Page */
         yourUsagePage.validateAndFillYourDetPage(browser);
-        /** Validates the Compare Page */
-        yourUsagePage.validateComparePage(browser);
-        /** Validates the Save Search Mail */
-        yourUsagePage.validateSaveSearchMail(browser);
+        /** Fills the Contact Details Form */
+        yourUsagePage.fillContactDetailsinApplyNowPage(browser);
+        /** Fills the Personal Details Form */
+        yourUsagePage.fillPersonalDetailsInApplyNowPage(browser);
+        /** Fills the Connection Details Form */
+        yourUsagePage.fillConnectionDetaislInApplyNowPage(browser);
+        /** Fills the Terms and Conditions Form */
+        yourUsagePage.fillCheckBoxesInApplyNowPage(browser);
+        
     },
 
     /**
